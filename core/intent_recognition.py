@@ -10,7 +10,13 @@ class IntentRecognizer:
     def recognize_intent(self, message):
         message = message.lower()
         
-        # Simple keyword matching for intent recognition
+        # Add direct checks for common ordering phrases
+        order_phrases = ["order", "like to order", "want to order", "get", "buy", "purchase"]
+        for phrase in order_phrases:
+            if phrase in message:
+                return "place_order"
+        
+        # Continue with existing keyword matching
         for intent_name, keywords in self.intents.items():
             for keyword in keywords:
                 if keyword.lower() in message:

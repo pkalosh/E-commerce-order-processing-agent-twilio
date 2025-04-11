@@ -15,7 +15,7 @@ def sms_webhook(request):
     """Handle incoming SMS messages from Twilio"""
     incoming_message = request.POST.get('Body', '')
     from_number = request.POST.get('From', '')
-    
+    print(incoming_message, from_number)
     # Get or create customer
     customer, created = Customer.objects.get_or_create(
         phone_number=from_number,
